@@ -9,6 +9,7 @@ accountCity = "Ranchi"
 // console.log(accountId);
 
 
+
 accountEmail = "xyz@google.com"
 accountPassword = "212121"
 accountCity = "Bengaluru"
@@ -33,6 +34,6 @@ console.table([accountId, accountEmail, accountPassword, accountCity]);
 
 > const is used to declare constant values
 
-> var and let is used to declare variables that can be changed
+> var and let is used to declare variables that can be changed.
 
 */
