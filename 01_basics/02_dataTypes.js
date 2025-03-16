@@ -5,6 +5,7 @@ let age = 22
 let isLoggedIn = false
 let state;
 
+
 // number => 2 to power 53
 // bigInt
 // string => ""
