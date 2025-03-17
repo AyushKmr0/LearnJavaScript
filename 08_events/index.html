@@ -1,32 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Event Listener</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #mybutton,
+        a {
+            width: 500px;
+            height: 100px;
+            border-radius: 1rem;
+            border: none;
+            font-size: 30px;
+            margin: 1rem;
+            background-color: #f0f0f0;
+            color: #212121;
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+
+        }
+
+        #mybutton:hover,
+        a:hover {
+            background-color: #c5bfbf;
+        }
+
+    </style>
 </head>
-<body style="background-color: #414141; color: aliceblue;">
-    <h2>Amazing image</h2>
-    <div >
-        <ul id="images">
-            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/31183387/pexels-photo-31183387/free-photo-of-nuremberg-castle-under-a-clear-blue-sky.jpeg" alt="castle"></li>
-            
-            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+<body>
+    <div class="container">
+        <button id="mybutton">Click Me!</button>
 
-            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+        <a href="https://google.com" id="myLink">Go to Google</a>
+    </div>
 
-            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
 
-            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+    <script>
+        const button = document.getElementById('mybutton');
 
-            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
-        </ul>
-   </div>
+        // button.addEventListener('click', () => {
+        //     alert('Button was clicked!')
+        // });
+
+
+        function showMessage() {
+            alert('Button was clicked!');
+        }
+        
+        // add event listener
+        // button.addEventListener('click', showMessage);
+
+        // remove event listener
+        // button.removeEventListener('click', showMessage);
+
+
+        
+        // document.addEventListener('keydown', (e) => {
+        //     console.log(`Key Pressed: ${e.key}`);
+        // })
+
+
+
+
+        // button.addEventListener('mouseenter', () => {
+        //     console.log('Mouse entered the button area!');
+        // });
+
+        // button.addEventListener('mouseover', () => {
+        //     console.log('Mouse entered the button area!');
+        // });
+
+
+
+        // button.addEventListener('mouseleave', () => {
+        //     console.log('Mouse left the button area!');
+        // })
+
+        // button.addEventListener('mouseout', () => {
+        //     console.log('Mouse left the button area!');
+        // })
+
+
+
+
+        // button.addEventListener('click', () => {
+        //     console.log('Clicked with Options!');
+        // }, { once: true }); // The event listener will be removed after the first trigger
+
+
+
+
+        // Time Stamp..
+
+        // button.addEventListener('click', (e) => {
+        //     console.log(`TimeStamp : ${e.timeStamp.toFixed(2)} milliseconds`)
+        // });
+
+
+        let lastEventTime = 0;
+
+        button.addEventListener('click', (e) => {
+            if(lastEventTime) {
+                const delay = e.timeStamp - lastEventTime;
+                console.log(`Delay between click: ${delay.toFixed(2) }milliseconds`);
+            }
+
+            lastEventTime = e.timeStamp;
+        });
+
+
+
+
+
+
+        // preventDefault() Method
+
+        document.getElementById('myLink').addEventListener('click', (e) => {
+            e.preventDefault();
+
+            console.log('Link click prevented. Page not redirected.');
+        });
+
+
+
+        // document.addEventListener('contextmenu', (e) => {
+        //     e.preventDefault();
+
+        //     console.log('Custom context menu opened.')
+        // })
+
+
+        document.addEventListener('keydown', (e) => {
+            if(e.ctrlKey && e.key === 's') {
+                e.preventDefault();
+                console.log('Saving disabled.');
+            }
+        });
+
+
+
+
+        // document.querySelector('.container').addEventListener('click', (e) => {
+        //     console.log(e.target.tagName);
+        //     console.log(e.target.textContent);
+        //     console.log(e.target.id);
+        //     console.log(e.currentTarget);
+        // })
+
+        
+
+        // document.addEventListener('mouseover', (e) => {
+        //     console.log(e.toElement);
+        // })
+
+
+
+
+        // Show Mouse Click Position 
+        // document.addEventListener('click', (e) =>  {
+        //     console.log(`X: ${e.clientX}, Y: ${e.clientY}`);
+        // });
+
+
+
+        // Mouse Move Tracker
+        // document.addEventListener('mousemove', (e) => {
+        //     console.log(`Mouse Position - X: ${e.clientX}, Y:${e.clientY}`);
+        // });
+
+
+
+
+
+        document.addEventListener('click', (event) => {
+            console.log('Event Type:', event.type);
+            console.log('Timestamp:', event.timeStamp);
+            console.log('Event Target:', event.target);
+            console.log('Current Target:', event.currentTarget);
+            console.log('Client Position (X, Y):', event.clientX, event.clientY);
+            console.log('Screen Position (X, Y):', event.screenX, event.screenY);
+            console.log('AltKey Pressed:', event.altKey);
+            console.log('CtrlKey Pressed:', event.ctrlKey);
+            console.log('ShiftKey Pressed:', event.shiftKey);
+        });
+
+
+
+
+
+        // stopPropagation()
+
+
+        // without stopPropargation
+        // document.querySelector('.container').addEventListener('click', () => {
+        //     console.log('Parent Div clicked');
+        // })
+
+        // document.getElementById('mybutton').addEventListener('click', () => {
+        //     console.log('Button clicked')
+        // })
+
+
+
+        // with stopPropagation()
+        document.querySelector('.container').addEventListener('click', () => {
+            console.log('Parent Div clicked!');
+        });
+        document.getElementById('mybutton').addEventListener('click', (e) => {
+            e.stopPropagation();
+            console.log('Button clicked!')
+        })
+
+    </script>
 </body>
-<script>
-    document.getElementById('owl').onclick = function() {
-        alert('Owl Clicked!')
-    }
-
-</script>
 </html>
